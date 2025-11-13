@@ -17,8 +17,13 @@ const ProductCard = ({ product }) => {
     // Event handler para manejar el click del botón "Agregar al Carrito"
     // Se ejecuta cuando el usuario hace click en el botón
     const handleAddToCart = () => {
-        addItem(product); // Llama a la función del store pasándole el objeto producto completo
-        // Feedback visual opcional (se podría agregar una notificación toast aquí)
+        try {
+            if (addItem && product) {
+                addItem(product);
+            }
+        } catch (error) {
+            console.error("Error adding product to cart:", error);
+        }
     };
 
     // Función utilitaria para formatear números como moneda argentina
